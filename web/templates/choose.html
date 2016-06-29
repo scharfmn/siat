@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>MakeMyDay</title>
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" media="screen" type="text/css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="screen" type="text/css">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+  </head>
+
+  <body>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1">
+      <h1 style="text-align:center;">Make My Day!</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-9 col-xs-offset-2">
+      <hr>
+    </div>
+  </div>
+    <div class="row">
+    <div class="col-xs-9 col-xs-offset-2">
+    <h3>Instructions</h3>
+    <ul>
+      <li>Choose your numbers -- 1 or more</li>
+      <li>Type or click on a box to change amount</li>
+      <li>Then press "Accept"</li>
+      <li>You will be able to review your choices before payment</li>
+    </ul>
+    <hr>
+    </div>
+  </div>
+  <form role="form" method="post" action="/post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+    <div class="input-group col-xs-offset-1 col-xs-10">
+      <label class="col-xs-2 col-xs-offset-1" style="text-align:right;" for="n0">
+        <input type="number" min="0" step="1" class="form-control" name="n0" id="n0" max="500" placeholder="&#8377;">0&nbsp;
+      </label>
+      <label class="col-xs-2" style="text-align:right;" for="n00">
+        <input type="number" min="0" step="1" class="form-control" name="n00" id="n00" max="500" placeholder="&#8377;">00&nbsp;
+      </label>
+    </div>
+    <br>
+    {% for i in x %}
+      <div class="input-group col-xs-offset-1 col-xs-10">
+
+        <label class="col-xs-2 col-xs-offset-1" style="text-align:right;" for="{{'n'~i}}">
+          <input type="number" min="0" step="1" class="form-control" name="{{'n'~i}}" id="{{'n'~i}}" max="500" placeholder="&#8377;">{{i}}&nbsp;
+        </label>
+
+        <label class="col-xs-2" style="text-align:right;" for="{{'n'~(i+1)}}">
+          <input type="number" min="0" step="1" class="form-control" name="{{'n'~(i+1)}}" id="{{'n'~(i+1)}}" max="500" placeholder="&#8377;">{{i+1}}&nbsp;
+        </label>
+
+        <label class="col-xs-2" style="text-align:right;" for="{{'n'~(i+2)}}">
+          <input type="number" min="0" step="1" class="form-control" name="{{'n'~(i+2)}}" id="{{'n'~(i+2)}}" max="500" placeholder="&#8377;">{{i+2}}&nbsp;
+        </label>
+
+        <label class="col-xs-2" style="text-align:right;" for="{{'n'~(i+3)}}">
+          <input type="number" min="0" step="1" class="form-control" name="{{'n'~(i+3)}}" id="{{'n'~(i+3)}}" max="500" placeholder="&#8377;">{{i+3}}&nbsp;
+        </label>
+
+        <div id="{{'e'~(i+4)}}">
+          <label class="col-xs-2" style="text-align:right;" for="{{'n'~(i+4)}}">
+            <input type="number" min="0" step="1" class="form-control" name="{{'n'~(i+4)}}" id="{{'n'~(i+4)}}" max="500" placeholder="&#8377;">{{i+4}}&nbsp;
+          </label>
+        </div>
+      </div>
+      <br>
+    {% endfor %}
+    <div class="form-group">
+      <br><br>
+      <div class="col-xs-8 col-xs-offset-5">
+        <button type="submit" class="btn btn-lg btn-success">Accept</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+    <script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="application/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script type="application/javascript" src="{{ url_for('static', filename='fixup.js') }}"></script>
+
+</body>

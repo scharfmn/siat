@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>Confirm</title>
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" media="screen" type="text/css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="screen" type="text/css">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+  </head>
+  <body>
+
+    <div class="container col-xs-6 col-xs-offset-3">
+      <h2>Make My Day</h2>
+      <p>Confirm your selections</p>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Number</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for choice in choices|sort %}
+            <tr>
+              <td><span class="glyphicon glyphicon-flash"></span>{{choice[0]}}</td>
+              <td>&#8377;&nbsp;{{choice[1]}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1 text-center">
+          <h3>Total Amount: &#8377;{{total['total']}}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-10 col-xs-offset-1 text-center">
+        <br>
+        <br>
+        <br>
+        <button type="submit" class="btn btn-lg btn-danger">View Payment Options</button>
+      </div>
+    </div>
+
+    <script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="application/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
